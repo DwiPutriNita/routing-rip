@@ -1,0 +1,23 @@
+Router>enable
+Router#configure terminal
+Router(config)#hostname R1
+R1(config)#interface fa0/0
+R1(config-if)#ip address 192.168.1.254 255.255.255.0
+R1(config-if)#no shutdown
+
+R1(config-if)#interface s2/0
+R1(config-if)#ip address 100.100.100.1 255.255.255.252
+R1(config-if)#no shutdown
+
+R1(config-if)#interface s3/0
+R1(config-if)#ip address 100.100.100.5 255.255.255.252
+R1(config-if)#no shutdown
+R1(config-if)#exit
+
+//konfigurasi eigrp
+R1(config)#router eigrp 1
+R1(config-router)#network 192.168.1.0 0.0.0.255
+R1(config-router)#network 100.100.100.0 0.0.0.3
+R1(config-router)#network 100.100.100.4 0.0.0.3
+R1(config-router)#no auto-summary
+R1(config-router)#exit
